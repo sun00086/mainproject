@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="result">
+    {% csrf_token %}
+    Please input record date:<input type="text" name="v_date">
+
+     <input type="submit" value="Find">
+
+
+</form>
+<br>
+
+<input type="button" value="All records">
+
+</body>
+</html>

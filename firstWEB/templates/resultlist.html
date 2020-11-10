@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result List</title>
+</head>
+<body>
+
+<h1>Total Covid19 Record:</h1>
+Program by Feng Sun
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>DATE</th>
+            <th>CASES</th>
+            <th>DEATHS</th>
+            <th>FRENCH NAME</th>
+            <th>ENGLISH NAME</th>
+        </tr>
+
+    </thead>
+   {% for d in list %}
+    <tr>
+         <td>  {{ d.ID }} </td>
+         <td> {{ d.DATE }}</td>
+         <td> {{ d.CASES }}</td>
+         <td> {{ d.DEATHS }}</td>
+         <td> {{ d.FR }}</td>
+         <td> {{ d.EN }}</td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+
+
+
+
+
+</body>
+</html>
