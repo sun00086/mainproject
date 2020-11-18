@@ -7,13 +7,25 @@ from pymongo import MongoClient
 
 class MyDAO(object):
 
-    def conn_mongodb(self):
+    def conn_user_mongodb(self):
         self.cluster = MongoClient(
             "mongodb+srv://sun00086:yA549090@cluster0.vb0ks.mongodb.net/mydb?retryWrites=true&w=majority")
-
         self.db = self.cluster['mdb']
-        self.collection = self.db['covid19cases']
-        print("conn successful.")
+        self.collection = self.db['user']
+        print("conn user table successful.")
+
+
+    def conn_close(self):
+        self.cluster.close()
+
+    def conn_info_mongodb(self):
+        self.cluster = MongoClient(
+            "mongodb+srv://sun00086:yA549090@cluster0.vb0ks.mongodb.net/mydb?retryWrites=true&w=majority")
+        self.db = self.cluster['mdb']
+        self.collection = self.db['info']
+        print("conn info table successful.")
+
+
 
     def add(self):
         pass
@@ -32,10 +44,14 @@ class MyDAO(object):
 
         return lst
 
-    def r_displayByDate(self, findDate):
+    def r_displayById(self, id):
 
-        i = self.collection.find_one(({"DATE": findDate}))
-        if i == None:
+        result = self.collection.find_one(({"USER": id}))
+        if result == None:
             return None
         else:
-            return  {'ID': i['ID'], 'DATE': i['DATE'], 'CASES': i['CASES'], 'DEATHS': i['DEATHS'], 'FR': i['NAME FR'], 'EN': i['NAME EN']}
+            return result
+
+    def r_add(self,newRecord):
+        self.collection.insert_one(newRecord)
+        print("save successful.")

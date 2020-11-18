@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>CST8276 DATABASE GROUP PROJECT</h1>
+<form method="post" action="register_done">
+    {% csrf_token %}
+
+
+
+
+<table>
+      <tr>
+         <td>Please input user name:</td>
+          <td> <input type="text" name="v_user"> </td>
+    </tr>
+
+    <tr>
+        <td> Please input your email:</td>
+        <td><input type="text" name="v_email"></td>
+    </tr>
+    <tr>
+         <td>Please input your password:</td>
+           <td><input type="password" name="v_password"> </td>
+    </tr>
+    <tr>
+         <td>Please input your password again:</td>
+          <td><input type="password" name="v_password1"> </td>
+    </tr>
+    <tr>
+         <td></td>
+          <td><input type="submit" value="Submit"></td>
+    </tr>
+
+
+</table>
+
+
+</form>
+
+
+
+
+</body>
+</html>

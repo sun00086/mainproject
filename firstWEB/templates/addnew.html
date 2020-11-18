@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>CST8276 DATABASE GROUP PROJECT</h1>
-<form method="post" action="">
+<form method="post" action="addnew_done">
     {% csrf_token %}
 
 
@@ -14,32 +14,38 @@
 
 <table>
       <tr>
-         <td> Title </td>
-         <td> Detail</td>
-         <td>Date </td>
-         <td> Link</td>
-         <td>Sub title</td>
-         <td></td>
-
+         <td>Topic:</td>
+          <td> <label for="topic">Choose a topic:</label>
+                  <select name="topic" id="topic">
+                    <option value="edu">Educational News</option>
+                    <option value="learn">Learning stuff</option>
+                  </select>
+          </td>
     </tr>
 
     <tr>
-         <td> <input type="text" name="v_date"> </td>
-         <td> <input type="text" name="v_date"></td>
-         <td><input type="text" name="v_date"> </td>
-         <td> <input type="text" name="v_date"></td>
-         <td><input type="text" name="v_date"></td>
-         <td><input type="submit" value="Submit"></td>
-
+        <td>Title:</td>
+        <td><input type="text" name="v_title"></td>
     </tr>
 
+    <tr>
+         <td>Description:</td>
+          <td><input type="text" name="v_dec"> </td>
+    </tr>
+
+      <tr>
+         <td>Link:</td>
+          <td><input type="text" name="v_link"> </td>
+    </tr>
+
+    <tr>
+         <td></td>
+          <td><input type="submit" value="Submit"></td>
+    </tr>
+
+
 </table>
-
-
 </form>
-
-
-
 
 </body>
 </html>
