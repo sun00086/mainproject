@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>List All</title>
+    <script>
+         var stringToHTML = function (str) {
+	     var parser = new DOMParser();
+	     var doc = parser.parseFromString(str, 'text/html');
+	        return doc.body;
+            };
+
+
+    </script>
+
 </head>
 <body>
 <table border="1">
@@ -20,7 +30,10 @@
          <td>  {{ d.TOPIC }} </td>
          <td> {{ d.DATE }}</td>
          <td> {{ d.TITLE }}</td>
-         <td> {{ d.DEC }}</td>
+         <td>
+             {{ d.DEC }}
+
+         </td>
          <td> {{ d.LINK }}</td>
 
 

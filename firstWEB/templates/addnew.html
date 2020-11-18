@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>Title</title>
+     <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 </head>
 <body>
 <h1>CST8276 DATABASE GROUP PROJECT</h1>
@@ -15,7 +17,7 @@
 <table>
       <tr>
          <td>Topic:</td>
-          <td> <label for="topic">Choose a topic:</label>
+          <td>
                   <select name="topic" id="topic">
                     <option value="edu">Educational News</option>
                     <option value="learn">Learning stuff</option>
@@ -29,8 +31,14 @@
     </tr>
 
     <tr>
-         <td>Description:</td>
-          <td><input type="text" name="v_dec"> </td>
+         <td>Content:</td>
+          <td>
+            <textarea name="v_dec"></textarea>
+                <script>
+                        CKEDITOR.replace( 'v_dec' );
+                </script>
+
+          </td>
     </tr>
 
       <tr>
@@ -46,6 +54,7 @@
 
 </table>
 </form>
+
 
 </body>
 </html>

@@ -59,6 +59,6 @@ def find(request):
     return render(request,'find.html')
 
 def result(request):
-    #record = mydao.r_displayByDate('2020-06-06')
+
     record = {'ID': '001', 'DATE': '2020-10-2', 'CASES': 1, 'DEATHS': 2, 'FR': 'NAME FR', 'EN': 'NAME EN'}
     return  render(request,'result.html',context={'data':record})
