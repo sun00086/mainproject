@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Result List</title>
+    <title>List All</title>
 </head>
 <body>
-
-<h1>Total Covid19 Record:</h1>
-Program by Feng Sun
 <table border="1">
     <thead>
         <tr>
@@ -18,12 +15,7 @@ Program by Feng Sun
             <th>Link</th>
 
         </tr>
-
-    </thead>
-
-</table>
-
- {% for d in lst %}
+    {% for d in list %}
     <tr>
          <td>  {{ d.TOPIC }} </td>
          <td> {{ d.DATE }}</td>
@@ -35,7 +27,9 @@ Program by Feng Sun
     </tr>
     {% endfor %}
 
+    </thead>
 
+</table>
 
 </body>
 </html>

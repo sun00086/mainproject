@@ -32,9 +32,12 @@ def register_done(request):
     mydao.conn_close()
     return render(request, 'register_done.html')
 
-def displayAll(request):
-    allList = mydao.r_displeyAll()
-    return  render(request,'resultlist.html',context={'list':allList})
+def listAll(request):
+     mydao.conn_info_mongodb()
+     lst = mydao.r_displayAll()
+     mydao.conn_close()
+     return render(request, 'list_all.html',context={'list':lst})
+
 
 
 def addnew(request):

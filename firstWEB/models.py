@@ -26,23 +26,21 @@ class MyDAO(object):
         print("conn info table successful.")
 
 
-
-    def add(self):
-        pass
-    def delete(self):
-        pass
-    def update(self):
-        pass
-
-
-    def r_displeyAll(self):
+    def r_displayAll(self):
         lst = []
         results = self.collection.find()
         for i in results:
-            r1 = {'ID': i['ID'], 'DATE': i['DATE'], 'CASES': i['CASES'], 'DEATHS': i['DEATHS'], 'FR': i['NAME FR'], 'EN': i['NAME EN']}
-            lst.append(r1)
+            res = {'TOPIC': i['TOPIC'], 'TITLE': i['TITLE'], 'DEC': i['DEC'], 'LINK': i['LINK'], 'DATE': i['DATE']}
+            lst.append(res)
 
         return lst
+
+    def r_displayByTopic(self,topic):
+        result = self.collection.find_one(({"TOPIC": topic}))
+        if result == None:
+            return None
+        else:
+            return result
 
     def r_displayById(self, id):
 

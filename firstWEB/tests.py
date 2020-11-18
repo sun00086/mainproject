@@ -16,5 +16,6 @@ mydao = MyDAO();
 # print(result)
 
 mydao.conn_info_mongodb()
-user = {'TOPIC': 'topic', 'TITLE': 'v_title', 'DEC': 'v_dec', 'LINK': 'v_link', 'DATE': 'today'}
-mydao.r_add(user)
+lst = mydao.r_displayAll()
+for i in lst:
+    print(i)
