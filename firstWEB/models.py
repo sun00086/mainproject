@@ -1,3 +1,4 @@
+from bson import ObjectId
 from django.shortcuts import render
 from pymongo import MongoClient
 
@@ -15,6 +16,7 @@ class MyDAO(object):
         print("conn user table successful.")
 
 
+
     def conn_close(self):
         self.cluster.close()
 
@@ -30,26 +32,51 @@ class MyDAO(object):
         lst = []
         results = self.collection.find()
         for i in results:
-            res = {'TOPIC': i['TOPIC'], 'TITLE': i['TITLE'], 'DEC': i['DEC'], 'LINK': i['LINK'], 'DATE': i['DATE']}
+            res = {'ID':i['_id'],'TOPIC': i['TOPIC'], 'TITLE': i['TITLE'], 'SUBTITLE': i['SUBTITLE'], 'CONTENT': i['CONTENT'], 'DATE': i['DATE']}
             lst.append(res)
 
         return lst
 
-    def r_displayByTopic(self,topic):
-        result = self.collection.find_one(({"TOPIC": topic}))
+    def r_findByKey(self,lst):
+        result = self.collection.find(lst)
+
+
+        if result == None:
+            return None
+        else:
+            lst = []
+            for i in result:
+                res = {'ID': i['_id'], 'TOPIC': i['TOPIC'], 'TITLE': i['TITLE'], 'SUBTITLE': i['SUBTITLE'],
+                       'CONTENT': i['CONTENT'], 'DATE': i['DATE']}
+                lst.append(res)
+            return lst
+
+    def r_findById(self, str):
+
+        result = self.collection.find({'_id' : ObjectId(str)})
         if result == None:
             return None
         else:
             return result
 
-    def r_displayById(self, id):
-
-        result = self.collection.find_one(({"USER": id}))
-        if result == None:
-            return None
-        else:
-            return result
+    def r_findUser(self,v_user):
+        result = self.collection.find({'USER': v_user})
+        for u in result:
+            return u['USER']
 
     def r_add(self,newRecord):
         self.collection.insert_one(newRecord)
         print("save successful.")
+
+    def r_update(self,user):
+        condition = {'CURRENT': 'WEB001'}
+        newValues = {"$set": {"V_USER": user}}
+        result = self.collection.update_one(condition,newValues)
+        return result
+
+    def r_findCurrentUser(self):
+        condition = {'CURRENT': 'WEB001'}
+        result = self.collection.find(condition)
+        for u in result:
+            return  u['V_USER']
+

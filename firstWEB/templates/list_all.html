@@ -1,48 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>List All</title>
-    <script>
-         var stringToHTML = function (str) {
-	     var parser = new DOMParser();
-	     var doc = parser.parseFromString(str, 'text/html');
-	        return doc.body;
-            };
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $("#id_username").blur(function () {
+      var form = $(this).closest("form");
+      $.ajax({
+        method: "POST",
+        url: form.attr("data-hashtag-url"),
+        data: {
+          name: $('#id_username').val()
+        },
+        dataType: 'json',
+      });
 
+    });
 
-    </script>
-
+</script>
 </head>
 <body>
-<table border="1">
-    <thead>
-        <tr>
-            <th>Topic</th>
-            <th>Date</th>
-            <th>Title</th>
-            <th>Content</th>
-            <th>Link</th>
 
-        </tr>
-    {% for d in list %}
-    <tr>
-         <td>  {{ d.TOPIC }} </td>
-         <td> {{ d.DATE }}</td>
-         <td> {{ d.TITLE }}</td>
-         <td>
-             {{ d.DEC }}
-
-         </td>
-         <td> {{ d.LINK }}</td>
-
-
-    </tr>
-    {% endfor %}
-
-    </thead>
-
-</table>
+<form action="">
+  First name: <input type="text" name="FirstName" value="Mickey"><br>
+  Last name: <input type="text" name="LastName" value="Mouse"><br>
+  <input type="submit" value="Submit">
+</form>
 
 </body>
 </html>

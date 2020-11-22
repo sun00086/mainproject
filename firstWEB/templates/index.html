@@ -1,31 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>CST8276 DATABASE GROUP PROJECT</title>
+  	<title>Display Form </title>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<h1>CST8276 DATABASE GROUP PROJECT</h1>
-<br/>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAMAAAAKqCSwAAAAG1BMVEUAY0H///8rel7z+PafxLdVlX7Y5+J8rZu61ctoOSGpAAADTklEQVR4nO2a6XarMAyEi/f3f+KLSZPAWF7INSLndL6fFJfJWJLXnx9CCCGEEEIIIYQQQgghhBBCCCGEkD+JMcZ7o/Y1tyeON/QxhWDtsrjrxB1Jyx47ZpGJyb7aaEk19iB16Ls+2bNNZhCPSpfQtdUnaKIk1QT47tKJVl800JLqiw+H1uvG2aKBllTszBVff1uwVE1qaeqypOrbUbBUTaoTvlytV0IP6EnFStX6tKkp1ZGKleqBXK+qSnWkilkiJ1ZdqYpUKak2W8tXpaDWlFp1qrBVjpQ1BUNIrlHdZmGGfZLTb0lRa/5X71SsV1JMW6c2T61ZtXGcCEjdryi0Hn+ZQ2IJv8kqxOeOY6/CPGRvaxko/ZniVDx8/KDc7mwtTVVWCpXKYTy8e7gwdXBRMw2oVAbNe9WrwlTlOEWvcn9X1oNF9p1Y1E7BlFnkZUU4pDVXCVdw9OphYZAkFUOadvdjpdqeOUkTTmnUTT0K+E0UCIqHKOx/7UgFAUF8+vgBMPxrFyoMwKdTkOw5LLBUqff/MSpfToGu/BxC1aptpcmS3qtpSKxYZpV2qFbHUF8kFryqPlKJBfT9F2vXVYjzJscF+KydVdCp+/CLeam034ZO90o9s/l7r6vVpJK419WdUWtQdhadt7r6O923wcXu2YiJOFipVoD4UNl9z8ckLGlV6+rIOZOJKYhLb/XRqonxTpa5oT4HqGLEXr+vBNRo2nlLsIrkbu/K/IIIWHX27fwCW43vhOeX2HpWZ+aWenWm39+oz1nzoPmJ0EV7d80Ux89fqlU81P1Grb0BaUirxqnK/xr65OqzgA9KU5Vw5UkQpLxtMSLWXna4Vqw9WoxNCLYVz8A0/SS4+9Re/rXOVJHpwxdulLe9qB9qKkiFLu3NOjACGtE7Wyruk/X+f3H/qh4Ss6XiQNpdV6ONvqp1slSMvXZSZco7apULQbOloiUD+wDQYl0AelnrXKnFPvnASIOJFaVrefOlYpKM/PcisfLD6y/aoRsjA4x8uCZct5oq9bNzssqRZTHnmSr1s3OyIrGefXHhVVvsytFbyhg2b02XXWAu5k0z2hnv0nYr/J7V9mnyXXuvvtgmhBBCCCGEEEIIIYQQQgghhBBCCPmEf5q7FV+oQ3EOAAAAAElFTkSuQmCC" alt="" width="200" height="120">
+        </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav  ml-auto">
 
-User:{{ user.USER }}<br/>
-Date:{{ user.DATE }}
-
-<a href=""></a>
-<br/>
-<br/>
-<br/>
-<a href="list_all">Display All</a>
-<br/>
-<a href="add_new">Add New Article</a>
-<br/>
-<a href="find">Find a Article</a>
-<br/>
-
-
-
-
+        <li class="nav-item">
+          <a class="nav-link font-weight-bold display-5" href="add_new">Add New Article</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font-weight-bold display-5" href="find">Find a Article</a>
+        </li>
 
 
+          <form action="login">
+                <input type="submit" class="btn btn-success  btn-outline-dark btn-lg" value="Login" />
+          </form>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+ {% for d in list %}
+{{ d.V_USER }}
+  {% endfor %}
+ <table border="1">
+    <thead>
+        <tr>
+            <th>Topic</th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Sub Title</th>
+            <th>Content</th>
+
+        </tr>
+    {% for d in list %}
+    <tr>
+         <td>  {{ d.TOPIC }} </td>
+         <td> {{ d.DATE }}</td>
+         <td> {{ d.TITLE }}</td>
+         <td>
+             {{ d.SUBTITLE }}
+
+         </td>
+         <td>
+             <form method="post" action="content">
+                 {% csrf_token %}
+                 <input type="hidden" value={{ d.ID }} name="v_id">
+                 <button type="submit" class="btn btn-info" value="Submit">Details</button>
+             </form>
+
+
+
+
+         </td>
+
+
+    </tr>
+    {% endfor %}
+
+    </thead>
+
+</table>
 </body>
 </html>

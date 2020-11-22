@@ -20,19 +20,14 @@
                     <!-- form card  -->
                     <div class="card rounded shadow shadow-sm">
                         <div class="card-header bg-success">
-                            <h3 class="mb-0">Find Information</h3>
+                            <h3 class="mb-0">Check your user:</h3>
                         </div>
                         <div class="card-body">
-                                  <form method="post" action="result">
-                                        {% csrf_token %}
-                                      <div class="form-group">
-                                      <label for="keywords">Find some your interested.</label>
-                                      <input type="text" class="form-control" id="keywords" aria-describedby="titleHelp" placeholder="Enter search key words" name="v_keywords">
-                                    </div>
+                                  <form method="post" action="index">
+                                     {% csrf_token %}
 
 
-
-                                    <button type="submit" class="btn btn-info" value="Submit">Submit</button>
+                                    <button type="submit" class="btn btn-info" value="Submit">Go to main page</button>
                                   </form>
                         </div>
                         <!--/card-block-->

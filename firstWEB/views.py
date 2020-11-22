@@ -1,22 +1,46 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
 from firstWEB.models import MyDAO
-from datetime import date, datetime
+from datetime import date, datetime, time
 
-mydao = MyDAO();
+mydao = MyDAO()
 
-#today = datetime.strptime(date.today(),'%Y-%m-%d')
+
+
 today = datetime.strftime(date.today(),'%Y-%m-%d')
 
-def index(request):
-    v_user = request.POST['v_user']
 
-    user = {'USER': v_user, 'DATE': today}
-    return render(request,'index.html',context={'user':user})
+
+def index(request):
+
+    mydao.conn_info_mongodb()
+    lst = mydao.r_displayAll()
+    mydao.conn_close()
+    mydao.conn_user_mongodb()
+    v_user = mydao.r_findCurrentUser()
+    lst.append({'V_USER':v_user})
+    mydao.conn_close()
+
+
+    return render(request, 'index.html', context={'list': lst})
 
 def login(request):
-    return  render(request,'login.html')
+
+    name = 'abc'
+    return  render(request,'login.html',context={'user': name})
+
+def login_done(request):
+    # v_user = request.POST['v_user']
+    #
+    # mydao.conn_user_mongodb()
+    # v_user = mydao.r_findById(v_user)
+    # if v_user == None:
+    #     v_user = 'Did not find it.'
+    # mydao.conn_close()
+    return render(request, 'login_done.html')
+
 
 def register(request):
     return  render(request,'register.html')
@@ -41,16 +65,17 @@ def listAll(request):
 
 
 def addnew(request):
+
     return render(request,'addnew.html')
 
 def addnew_done(request):
-    topic = request.POST['topic']
+    topic = request.POST['v_topic']
     v_title = request.POST['v_title']
-    v_dec = request.POST['v_dec']
-    v_link = request.POST['v_link']
+    v_content = request.POST['v_content']
+    v_sub_title = request.POST['v_sub_title']
 
     mydao.conn_info_mongodb()
-    info = {'TOPIC': topic, 'TITLE': v_title, 'DEC': v_dec,'LINK':v_link,'DATE':today}
+    info = {'TOPIC': topic, 'TITLE': v_title, 'CONTENT': v_content,'SUBTITLE':v_sub_title,'DATE':today}
     mydao.r_add(info)
     mydao.conn_close()
     return render(request,'addnew_done.html')
@@ -59,6 +84,27 @@ def find(request):
     return render(request,'find.html')
 
 def result(request):
+    str =  request.POST['v_keywords']
 
-    record = {'ID': '001', 'DATE': '2020-10-2', 'CASES': 1, 'DEATHS': 2, 'FR': 'NAME FR', 'EN': 'NAME EN'}
-    return  render(request,'result.html',context={'data':record})
+    mydao.conn_info_mongodb()
+    lst = mydao.r_findByKey({'$or': [{'TOPIC': {'$regex': '.*' + str + '.*', '$options': '$i'}},
+                                        {'CONTENT': {'$regex': '.*' + str + '.*', '$options': '$i'}},
+                                        {'SUBTITLE': {'$regex': '.*' + str + '.*', '$options': '$i'}},
+                                        {'TITLE': {'$regex': '.*' + str + '.*', '$options': '$i'}}]})
+    mydao.conn_close()
+    return  render(request,'result.html',context={'data':lst})
+
+def current_content(request):
+    str = request.POST['v_id']
+
+    mydao.conn_info_mongodb()
+    lst = mydao.r_findById(str)
+    mydao.conn_close()
+
+    for rlt in lst:
+        html = rlt['CONTENT']
+
+    html = "<html><body>" + html + "</body></html>"
+    return HttpResponse(html)
+
+

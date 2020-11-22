@@ -1,60 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <title>Title</title>
-     <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+  	<title>Input Form </title>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+	<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<h1>CST8276 DATABASE GROUP PROJECT</h1>
-<form method="post" action="addnew_done">
-    {% csrf_token %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 min-vh-150 d-flex flex-column justify-content-center">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+v_user{{v_user}}
+                    <!-- form card  -->
+                    <div class="card rounded shadow shadow-sm">
+                        <div class="card-header bg-success">
+                            <h3 class="mb-0">Register Information</h3>
+                        </div>
+                        <div class="card-body">
+                                  <form method="post" action="addnew_done">
+                                       {% csrf_token %}
+                                      <div class="form-group">
+                                    <label for="topic">Please select topic: </label>
+                                      <select name="v_topic" id="topic">
+                                            <option value="web">Web</option>
+                                            <option value="database">Database</option>
+                                            <option value="office">Office</option>
+
+                                          </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="title">Please input title:</label>
+                                      <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Enter Title" name="v_title">
+                                    </div>
+                                       <div class="form-group">
+                                      <label for="sub_title">Please input sub title:</label>
+                                      <input type="text" class="form-control" id="sub_title" aria-describedby="titleHelp" placeholder="Enter Sub Title" name="v_sub_title">
+                                    </div>
+                                       <div class="form-group">
+                                      <label for="tag">Please input tag:</label>
+                                      <input type="text" class="form-control" id="tag" aria-describedby="titleHelp" placeholder="Ente Tag" name="v_tag">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="content">Content:</label>
+
+                                         <textarea class="form-control" id="content" placeholder="content" name="v_content"></textarea>
+                                            <script>
+                                                    CKEDITOR.replace( 'v_content' );
+                                            </script>
+
+                                    </div>
+
+                                    <button type="submit" class="btn btn-info" value="Submit">Submit</button>
+                                  </form>
+                        </div>
+                        <!--/card-block-->
+                    </div>
+                    <!-- /form card login -->
+
+                </div>
 
 
+            </div>
+            <!--/row-->
 
-
-<table>
-      <tr>
-         <td>Topic:</td>
-          <td>
-                  <select name="topic" id="topic">
-                    <option value="edu">Educational News</option>
-                    <option value="learn">Learning stuff</option>
-                  </select>
-          </td>
-    </tr>
-
-    <tr>
-        <td>Title:</td>
-        <td><input type="text" name="v_title"></td>
-    </tr>
-
-    <tr>
-         <td>Content:</td>
-          <td>
-            <textarea name="v_dec"></textarea>
-                <script>
-                        CKEDITOR.replace( 'v_dec' );
-                </script>
-
-          </td>
-    </tr>
-
-      <tr>
-         <td>Link:</td>
-          <td><input type="text" name="v_link"> </td>
-    </tr>
-
-    <tr>
-         <td></td>
-          <td><input type="submit" value="Submit"></td>
-    </tr>
-
-
-</table>
-</form>
-
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+</div>
+<!--/container-->
 
 </body>
 </html>
