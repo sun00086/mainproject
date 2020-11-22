@@ -10,6 +10,23 @@
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="styles.css" />
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+</style>
 </head>
 <body>
 <!-- Navigation -->
@@ -38,17 +55,22 @@
 
 
       </ul>
+
+
     </div>
   </div>
+
 </nav>
- {% for d in list %}
-{{ d.V_USER }}
-  {% endfor %}
+Current User:
+        {% for d in list %}
+        {{ d.V_USER }}
+          {% endfor %}
  <table border="1">
     <thead>
         <tr>
             <th>Topic</th>
             <th>Date</th>
+            <th>Author</th>
             <th>Title</th>
             <th>Sub Title</th>
             <th>Content</th>
@@ -58,6 +80,7 @@
     <tr>
          <td>  {{ d.TOPIC }} </td>
          <td> {{ d.DATE }}</td>
+        <td> {{ d.AUTHOR }}</td>
          <td> {{ d.TITLE }}</td>
          <td>
              {{ d.SUBTITLE }}

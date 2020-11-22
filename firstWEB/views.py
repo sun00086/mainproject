@@ -29,17 +29,22 @@ def index(request):
 def login(request):
 
     name = 'abc'
-    return  render(request,'login.html',context={'user': name})
+    return  render(request,'login.html')
 
 def login_done(request):
-    # v_user = request.POST['v_user']
-    #
-    # mydao.conn_user_mongodb()
-    # v_user = mydao.r_findById(v_user)
-    # if v_user == None:
-    #     v_user = 'Did not find it.'
-    # mydao.conn_close()
-    return render(request, 'login_done.html')
+    v_user = request.POST['v_user']
+
+    mydao.conn_user_mongodb()
+    result = mydao.r_findUser(v_user)
+    if result == None:
+        lst = {'v_user': 'You did not register'}
+        mydao.r_updateCurrentUser('-ANONYMOUS-')
+    else:
+        lst = {'v_user':v_user,'welcome': 'Welcome back! '}
+        mydao.r_updateCurrentUser(v_user)
+    mydao.conn_close()
+
+    return render(request, 'login_done.html',context={'user': lst})
 
 
 def register(request):
@@ -74,8 +79,12 @@ def addnew_done(request):
     v_content = request.POST['v_content']
     v_sub_title = request.POST['v_sub_title']
 
+    mydao.conn_user_mongodb()
+    v_user = mydao.r_findCurrentUser()
+    mydao.conn_close()
+
     mydao.conn_info_mongodb()
-    info = {'TOPIC': topic, 'TITLE': v_title, 'CONTENT': v_content,'SUBTITLE':v_sub_title,'DATE':today}
+    info = {'TOPIC': topic, 'TITLE': v_title, 'CONTENT': v_content,'SUBTITLE':v_sub_title,'DATE':today,'AUTHOR':v_user}
     mydao.r_add(info)
     mydao.conn_close()
     return render(request,'addnew_done.html')

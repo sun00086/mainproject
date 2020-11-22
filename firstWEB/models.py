@@ -32,7 +32,7 @@ class MyDAO(object):
         lst = []
         results = self.collection.find()
         for i in results:
-            res = {'ID':i['_id'],'TOPIC': i['TOPIC'], 'TITLE': i['TITLE'], 'SUBTITLE': i['SUBTITLE'], 'CONTENT': i['CONTENT'], 'DATE': i['DATE']}
+            res = {'ID':i['_id'],'TOPIC': i['TOPIC'], 'TITLE': i['TITLE'], 'SUBTITLE': i['SUBTITLE'], 'CONTENT': i['CONTENT'], 'DATE': i['DATE'],'AUTHOR':i['AUTHOR']}
             lst.append(res)
 
         return lst
@@ -68,7 +68,7 @@ class MyDAO(object):
         self.collection.insert_one(newRecord)
         print("save successful.")
 
-    def r_update(self,user):
+    def r_updateCurrentUser(self,user):
         condition = {'CURRENT': 'WEB001'}
         newValues = {"$set": {"V_USER": user}}
         result = self.collection.update_one(condition,newValues)

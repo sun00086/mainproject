@@ -9,11 +9,12 @@ mydao = MyDAO();
 
 mydao.conn_user_mongodb()
 
-condition = {'CURRENT': 'WEB001'}
-newuser = {'$set':{'V_USER':'TRACY'}}
+condition = {'CURRENT': 'WEB001','V_USER':'TRACY'}
 
-user = mydao.r_findUser('Kayla')
-print(user)
+result = mydao.r_findCurrentUser()
+
+print(result)
+
 mydao.conn_close()
 
 
