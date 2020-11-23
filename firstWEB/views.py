@@ -11,7 +11,8 @@ mydao = MyDAO()
 
 today = datetime.strftime(date.today(),'%Y-%m-%d')
 
-
+def default(request):
+    return render(request, 'default.html')
 
 def index(request):
 

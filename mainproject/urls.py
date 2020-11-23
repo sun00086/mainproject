@@ -20,17 +20,18 @@ from firstWEB import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/index', views.index),
-    path('index/list_all', views.listAll),
-    path('index/add_new', views.addnew),
-    path('index/find',views.find),
-    path('index/result', views.result),
-    path('index/login', views.login),
-    path('index/register', views.register),
-    path('index/register_done', views.register_done),
-    path('index/addnew_done', views.addnew_done),
-    path('index/content',views.current_content),
-    path('index/login_done',views.login_done),
+    path('index', views.index),
+    path('list_all', views.listAll),
+    path('add_new', views.addnew),
+    path('find',views.find),
+    path('result', views.result),
+    path('login', views.login),
+    path('register', views.register),
+    path('register_done', views.register_done),
+    path('addnew_done', views.addnew_done),
+    path('content',views.current_content),
+    path('login_done',views.login_done),
+    path('',views.index),
 
 
 ]
